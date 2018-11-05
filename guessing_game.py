@@ -30,6 +30,22 @@ def start_game():
     ( You can add more features/enhancements if you'd like to. )
     """
     # write your code inside this function.
+    secret_number = random.randint(1, 10)
+    print("""
+Python Web Development Techdegree
+Project 1 - Number Guessing Game
+--------------------------------
+    
+Pick a number between 1 and 10:
+    """)
+    guess = int(input("\n> "))
+
+    if guess == secret_number:
+        print("You did it!")
+    elif guess > secret_number:
+        print("Too high")
+    elif guess < secret_number:
+        print("too low")
 
 
 if __name__ == '__main__':
