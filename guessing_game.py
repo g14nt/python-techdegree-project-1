@@ -39,11 +39,11 @@ def start_game():
         times_guessed = 0
         while True:
             try:
-                guessed_number = int(input("Guess a number between {} and {}\n> ".format(secret_number_min,secret_number_max)))
+                guessed_number = int(input("\nGuess a number between {} and {}\n> ".format(secret_number_min,secret_number_max)))
                 if guessed_number < secret_number_min or guessed_number > secret_number_max:
                     raise ValueError("The number you've entered is outside the range.")
             except ValueError as err:
-                print("You've entered invalid data. Try again!")
+                print("Something went wrong. Try again!")
                 print(err)
             else:
                 if guessed_number == secret_number:
@@ -52,12 +52,12 @@ def start_game():
                     print("Your score is {}.".format(times_guessed))
                     break
                 elif guessed_number > secret_number:
-                    print("Too high! Try again!\n")
+                    print("Too high! Try again!")
                     times_guessed += 1
                     continue
                 elif guessed_number < secret_number:
                     times_guessed += 1
-                    print("Too low! Try again!\n")
+                    print("Too low! Try again!")
                     continue
         return times_guessed
 
@@ -89,7 +89,7 @@ Project 1 - Number Guessing Game
             scores.append(score)
             continue
         elif play_again.lower() == 'n':
-            print("Thanks for playing!")
+            print("\nThanks for playing!")
             break
 
 
