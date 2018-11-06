@@ -11,7 +11,6 @@ NOTE: If you strongly prefer to work locally on your own computer, you can total
 
 import random
 
-
 def start_game():
     """Psuedo-code Hints
     
@@ -35,17 +34,31 @@ def start_game():
 Python Web Development Techdegree
 Project 1 - Number Guessing Game
 --------------------------------
-    
-Pick a number between 1 and 10:
     """)
-    guess = int(input("\n> "))
 
-    if guess == secret_number:
-        print("You did it!")
-    elif guess > secret_number:
-        print("Too high")
-    elif guess < secret_number:
-        print("too low")
+    def number_game(guessed_number):
+        times_guessed = 0
+        while True:
+            if guessed_number == secret_number:
+                print("You did it!")
+                times_guessed += 1
+                break
+            elif guessed_number > secret_number:
+                print("Too high! Guess Again:")
+                times_guessed += 1
+                guessed_number = int(input("> "))
+                continue
+            elif guessed_number < secret_number:
+                times_guessed += 1
+                print("Too low! Guess Again:")
+                guessed_number = int(input("> "))
+                continue
+        return times_guessed
+
+    print("Guess a number between 1 and 10")
+    guess = int(input("> "))
+    score = number_game(guess)
+    print("Your score is {}.".format(score))
 
 
 if __name__ == '__main__':
