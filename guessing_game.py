@@ -33,6 +33,7 @@ def start_game():
     secret_number_min = 1
     secret_number_max = 10
     secret_number = random.randint(secret_number_min, secret_number_max)
+    # Used https://docs.python.org/3.1/library/random.html to find randint method
     scores = []
 
     def number_game():
@@ -47,7 +48,7 @@ def start_game():
                 print(err)
             else:
                 if guessed_number == secret_number:
-                    print("You did it!")
+                    print("You got it!")
                     times_guessed += 1
                     print("Your score is {}.".format(times_guessed))
                     break
@@ -62,7 +63,7 @@ def start_game():
         return times_guessed
 
     def highest_score(all_scores):
-        highest = 10
+        highest = secret_number_max
         for min_score in all_scores:
             if min_score < highest:
                 highest = min_score
@@ -72,7 +73,10 @@ def start_game():
 Python Web Development Techdegree
 Project 1 - Number Guessing Game
 --------------------------------
-    """)
+
+I've picked a number between {} and {}.
+You've got to guess it. Let's begin!
+    """.format(secret_number_min, secret_number_max))
     score = number_game()
     scores.append(score)
 
