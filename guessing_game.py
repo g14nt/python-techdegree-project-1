@@ -11,6 +11,7 @@ NOTE: If you strongly prefer to work locally on your own computer, you can total
 
 import random
 
+
 def start_game():
     """Psuedo-code Hints
     
@@ -29,37 +30,43 @@ def start_game():
     ( You can add more features/enhancements if you'd like to. )
     """
     # write your code inside this function.
-
-    secret_number = random.randint(1, 10)
+    secret_number_min = 1
+    secret_number_max = 10
+    secret_number = random.randint(secret_number_min, secret_number_max)
     scores = []
 
     def number_game():
         times_guessed = 0
-        guessed_number = int(input("Guess a number between 1 and 10\n> "))
         while True:
-            if guessed_number == secret_number:
-                print("You did it!")
-                times_guessed += 1
-                break
-            elif guessed_number > secret_number:
-                print("Too high! Guess Again:")
-                times_guessed += 1
-                guessed_number = int(input("> "))
-                continue
-            elif guessed_number < secret_number:
-                times_guessed += 1
-                print("Too low! Guess Again:")
-                guessed_number = int(input("> "))
-                continue
+            try:
+                guessed_number = int(input("Guess a number between {} and {}\n> ".format(secret_number_min,secret_number_max)))
+                if guessed_number < secret_number_min or guessed_number > secret_number_max:
+                    raise ValueError("The number you've entered is outside the range.")
+            except ValueError as err:
+                print("You've entered invalid data. Try again!")
+                print(err)
+            else:
+                if guessed_number == secret_number:
+                    print("You did it!")
+                    times_guessed += 1
+                    print("Your score is {}.".format(times_guessed))
+                    break
+                elif guessed_number > secret_number:
+                    print("Too high! Try again!\n")
+                    times_guessed += 1
+                    continue
+                elif guessed_number < secret_number:
+                    times_guessed += 1
+                    print("Too low! Try again!\n")
+                    continue
         return times_guessed
 
     def highest_score(all_scores):
-        highest = all_scores[10]
+        highest = 10
         for min_score in all_scores:
             if min_score < highest:
                 highest = min_score
         return highest
-
 
     print("""
 Python Web Development Techdegree
@@ -70,11 +77,13 @@ Project 1 - Number Guessing Game
     scores.append(score)
 
     while True:
-        print("Your score is {}.".format(score))
         play_again = input("\nWould you like to play again? (Y/N)\n> ")
+        if play_again.lower() != 'y' and play_again.lower() != 'n':
+            print("Whoops! That isn't the right command.")
+            continue
         if play_again.lower() == "y":
             print("\nThe current high score is {}".format(highest_score(scores)))
-            # Found min solution for list from https://stackoverflow.com/questions/3090175/python-find-the-greatest-number-in-a-list-of-numbers
+            # Found min solution from https://stackoverflow.com/questions/2622994/python-finding-lowest-integer
             secret_number = random.randint(1, 10)
             score = number_game()
             scores.append(score)
