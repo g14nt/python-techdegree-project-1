@@ -58,14 +58,16 @@ Python Web Development Techdegree
 Project 1 - Number Guessing Game
 --------------------------------
     """)
+    score = number_game()
+    scores.append(score)
+
     while True:
-        score = number_game()
-        scores.append(score)
         print("Your score is {}.".format(score))
         play_again = input("\nWould you like to play again? (Y/N)\n> ")
         if play_again.lower() == "y":
             secret_number = random.randint(1, 10)
-            number_game()
+            score = number_game()
+            scores.append(score)
             continue
         elif play_again.lower() == 'n':
             break
