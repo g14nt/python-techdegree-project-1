@@ -29,15 +29,13 @@ def start_game():
     ( You can add more features/enhancements if you'd like to. )
     """
     # write your code inside this function.
-    secret_number = random.randint(1, 10)
-    print("""
-Python Web Development Techdegree
-Project 1 - Number Guessing Game
---------------------------------
-    """)
 
-    def number_game(guessed_number):
+    secret_number = random.randint(1, 10)
+    scores = []
+
+    def number_game():
         times_guessed = 0
+        guessed_number = int(input("Guess a number between 1 and 10\n> "))
         while True:
             if guessed_number == secret_number:
                 print("You did it!")
@@ -55,10 +53,25 @@ Project 1 - Number Guessing Game
                 continue
         return times_guessed
 
-    print("Guess a number between 1 and 10")
-    guess = int(input("> "))
-    score = number_game(guess)
-    print("Your score is {}.".format(score))
+    print("""
+Python Web Development Techdegree
+Project 1 - Number Guessing Game
+--------------------------------
+    """)
+    while True:
+        score = number_game()
+        scores.append(score)
+        print("Your score is {}.".format(score))
+        play_again = input("\nWould you like to play again? (Y/N)\n> ")
+        if play_again.lower() == "y":
+            secret_number = random.randint(1, 10)
+            number_game()
+            continue
+        elif play_again.lower() == 'n':
+            break
+
+
+
 
 
 if __name__ == '__main__':
