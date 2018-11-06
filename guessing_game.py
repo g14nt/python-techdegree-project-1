@@ -47,23 +47,21 @@ def start_game():
                 print("Something went wrong. Try again!")
                 print(err)
             else:
+                times_guessed += 1
                 if guessed_number == secret_number:
                     print("You got it!")
-                    times_guessed += 1
                     print("Your score is {}.".format(times_guessed))
                     break
                 elif guessed_number > secret_number:
                     print("Too high! Try again!")
-                    times_guessed += 1
                     continue
                 elif guessed_number < secret_number:
-                    times_guessed += 1
                     print("Too low! Try again!")
                     continue
         return times_guessed
 
     def highest_score(all_scores):
-        highest = secret_number_max
+        highest = all_scores[0]
         for min_score in all_scores:
             if min_score < highest:
                 highest = min_score
