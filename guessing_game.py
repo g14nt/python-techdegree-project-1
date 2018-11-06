@@ -65,11 +65,14 @@ Project 1 - Number Guessing Game
         print("Your score is {}.".format(score))
         play_again = input("\nWould you like to play again? (Y/N)\n> ")
         if play_again.lower() == "y":
+            print("\nThe current high score is {}".format(min(scores)))
+            # Found min solution for list from https://stackoverflow.com/questions/3090175/python-find-the-greatest-number-in-a-list-of-numbers
             secret_number = random.randint(1, 10)
             score = number_game()
             scores.append(score)
             continue
         elif play_again.lower() == 'n':
+            print("Thanks for playing!")
             break
 
 
