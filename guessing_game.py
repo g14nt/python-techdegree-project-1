@@ -53,6 +53,14 @@ def start_game():
                 continue
         return times_guessed
 
+    def highest_score(all_scores):
+        highest = all_scores[10]
+        for min_score in all_scores:
+            if min_score < highest:
+                highest = min_score
+        return highest
+
+
     print("""
 Python Web Development Techdegree
 Project 1 - Number Guessing Game
@@ -65,7 +73,7 @@ Project 1 - Number Guessing Game
         print("Your score is {}.".format(score))
         play_again = input("\nWould you like to play again? (Y/N)\n> ")
         if play_again.lower() == "y":
-            print("\nThe current high score is {}".format(min(scores)))
+            print("\nThe current high score is {}".format(highest_score(scores)))
             # Found min solution for list from https://stackoverflow.com/questions/3090175/python-find-the-greatest-number-in-a-list-of-numbers
             secret_number = random.randint(1, 10)
             score = number_game()
@@ -74,9 +82,6 @@ Project 1 - Number Guessing Game
         elif play_again.lower() == 'n':
             print("Thanks for playing!")
             break
-
-
-
 
 
 if __name__ == '__main__':
